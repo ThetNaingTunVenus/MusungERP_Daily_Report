@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card border-success mb-3" style="max-width: 50rem;">
+  <div class="card-header bg-success">Create Oreder Qty</div>
+  <div class="card-body text-success">
+<form method="POST">{% csrf_token %}
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" class="form-control" name="date">
+                </div>
+              </div>
+
+
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Buyer</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="buyer">
+                    <option selected="selected"></option>
+                    {% for b in buyer %}
+                    <option>{{b.BuyerName}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Style No</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="style">
+                    <option selected="selected"></option>
+                    {% for s in style %}
+                    <option>{{s.StyleCode}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Order Qty</label>
+                  <input type="number" class="form-control" name="orderqty">
+                </div>
+              </div>
+
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>CMP amount</label>
+                  <input type="text" class="form-control" name="cmp_amount">
+                </div>
+              </div>
+
+     <div class="col-md-12">
+<!--                <div class="form-group">-->
+<!--                  <label>Date</label>-->
+                  <input type="submit" name="Create" class="btn btn-success">
+<!--                </div>-->
+              </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+
+<!--=========================================-->
+
+ <div class="card">
+              <div class="card-header">
+
+<h5>Order</h5>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                    <th>Date</th>
+                  <th>Style No</th>
+                  <th>Buyer</th>
+                  <th>OrderQty</th>
+                    <th>CMP</th>
+
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in orderdata %}
+                <tr>
+                  <td>{{d.Date}}</td>
+                  <td>{{d.style}}</td>
+                  <td> {{d.buyer}}</td>
+                  <td>{{d.order_qty}}</td>
+                    <td>{{d.cmp_amount}}</td>
+
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+
+
+                  <th></th>
+                  <th></th>
+                  <th>Grand Totol</th>
+                  <th>{{buyer_orderqty}}</th>
+                      <th></th>
+
+
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+{% endblock content %}

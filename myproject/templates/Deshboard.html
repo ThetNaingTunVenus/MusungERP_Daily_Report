@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="card">
+              <div class="card-header">
+
+                <h3 class="card-title"><b>Monthly Data</b></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                  <tr>
+                    <th>Date</th>
+                  <th>Line</th>
+                  <th>Style No</th>
+                  <th>Buyer</th>
+                  <th>Item</th>
+
+                  <th>OrderQty</th>
+                  <th>InPut</th>
+                  <th>Daily Output</th>
+                  <th>Balance Qty</th>
+                  <th>CMP</th>
+                  <th>CMPbyStyle</th>
+                    <th>CMPbyLine</th>
+                   <th>Operator/Helper</th>
+                    <th>CMPprHr</th>
+                    <th>CMP-hr/prs</th>
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in queryset %}
+                <tr>
+                  <td>{{d.Date}}</td>
+                  <td>{{d.Line}}</td>
+                  <td>{{d.Style}}</td>
+                  <td> {{d.Buyer}}</td>
+                  <td>{{d.Item}}</td>
+
+                  <td>{{d.OrderQty}}</td>
+                  <td>{{d.In_Put}}</td>
+                  <td>{{d.DailyOutput}}</td>
+                  <td>{{d.BalanceQty}}</td>
+                  <td>{{d.CMP}}</td>
+                  <td>{{d.DailyCMPbyStyle}}</td>
+                  <td>{{d.DailyCMPbyLine}}</td>
+                  <td>{{d.Operator}}/{{d.Helper}}</td>
+                  <td>{{d.CMPprHr}}</td>
+                  <td>{{d.CMP_Hour_Person}}</td>
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Grand Totol</th>
+                  <th>{{sum_orderqty}}</th>
+                  <th>{{sum_input}}</th>
+                  <th>{{sum_output}}</th>
+                  <th>{{sum_balance}}</th>
+                  <th>{{sum_cmp}}</th>
+                  <th>{{sum_bystyle}}</th>
+                  <th>{{sum_byline}}</th>
+                    <th>{{sum_operator}}/{{sum_helper}}</th>
+                  <th>{{sum_cmpprhr}}</th>
+                    <th>{{sum_cmphrpr}}</th>
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+
+
+
+{% endblock content %}
+<!--================== end content=============-->

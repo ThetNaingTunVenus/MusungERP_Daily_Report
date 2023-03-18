@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card border-success mb-3" style="max-width: 60rem;">
+  <div class="card-header bg-success">Daily Report</div>
+  <div class="card-body text-primary">
+<form method="POST">{% csrf_token %}
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" class="form-control" name="date">
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Production Line</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="line">
+                    <option selected="selected"></option>
+                    {% for l in line %}
+                    <option>{{l.Name}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+                <!-- /.form-group -->
+
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Style No</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="style">
+                    <option selected="selected"></option>
+                    {% for s in style %}
+                    <option>{{s.StyleCode}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Item</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="item">
+                    <option selected="selected"></option>
+                    {% for i in item %}
+                    <option>{{i.ItemName}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+                <!-- /.form-group -->
+
+                <!-- /.form-group -->
+              </div>
+
+              <!-- /.col -->
+
+              <!-- /.col -->
+<!--              <div class="col-md-12">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Input</label>-->
+<!--                  <input type="text" class="form-control" name="in_put">-->
+<!--                </div>-->
+<!--              </div>-->
+              <!-- /.col -->
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Daily Output</label>
+                  <input type="text" class="form-control" name="out_put">
+                </div>
+              </div>
+
+<!--              <div class="col-md-12">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Operator</label>-->
+<!--                  <input type="text" class="form-control" name="operatorhr">-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              <div class="col-md-12">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Helper</label>-->
+<!--                  <input type="text" class="form-control" name="helper">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; /.col &ndash;&gt;-->
+
+<!--              &lt;!&ndash; /.col &ndash;&gt;-->
+
+<!--              &lt;!&ndash; /.col &ndash;&gt;-->
+<!--              <div class="col-md-12">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Working Hr</label>-->
+<!--                  <input type="text" class="form-control" name="workhr">-->
+<!--                </div>-->
+<!--              </div>-->
+              <!-- /.col -->
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Remark</label>
+                  <input type="text" class="form-control" name="rmark">
+                </div>
+              </div>
+
+
+     <div class="col-md-12">
+<!--                <div class="form-group">-->
+<!--                  <label>Date</label>-->
+                  <input type="submit" name="Create" class="btn btn-success">
+<!--                </div>-->
+              </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+<!--=================================================================-->
+
+
+ <div class="card">
+              <div class="card-header">
+
+<h5>Daily Production</h5>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                    <th>Date</th>
+                  <th>Line No</th>
+                  <th>Style</th>
+                  <th>Item</th>
+                    <th>Input</th>
+                    <th>Daily Output</th>
+
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in todaydata %}
+                <tr>
+                  <td>{{d.Date}}</td>
+                  <td>{{d.Line}}</td>
+                  <td> {{d.Style}}</td>
+                  <td>{{d.Item}}</td>
+                    <td>{{d.In_Put}}</td>
+                    <td>{{d.DailyOutput}}</td>
+
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+
+
+                  <th></th>
+                  <th></th>
+                  <th>Grand Totol</th>
+                  <th>{{buyer_orderqty}}</th>
+                      <th></th>
+                      <th></th>
+
+
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+
+
+
+{% endblock content %}

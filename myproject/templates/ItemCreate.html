@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card border-success mb-3" style="max-width: 50rem;">
+  <div class="card-header bg-success">Item Name</div>
+  <div class="card-body text-success">
+<form method="POST">{% csrf_token %}
+
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Item Name</label>
+                  <input type="text" class="form-control" name="ItemName">
+                </div>
+              </div>
+
+
+
+
+
+     <div class="col-md-12">
+<!--                <div class="form-group">-->
+<!--                  <label>Date</label>-->
+                  <input type="submit" name="Create" class="btn btn-success">
+<!--                </div>-->
+              </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+
+<!--=========================================-->
+
+ <div class="card">
+              <div class="card-header">
+
+<h5><b>ItemName List</b></h5>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+
+                  <th>ItemName</th>
+
+
+
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in item %}
+                <tr>
+                  <td>{{d.ItemName}}</td>
+
+
+
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+
+
+                  <th></th>
+
+
+
+
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+{% endblock content %}

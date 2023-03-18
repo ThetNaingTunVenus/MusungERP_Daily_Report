@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{{sum_of_orderqty}}
+
+
+  <div class="card">
+              <div class="card-header">
+                <form method="POST">{% csrf_token %}
+
+
+
+                    FROM DATE: <input type="date" name="from" class="form-control col-md-3"/>
+
+                    TO DATE:<input type="date" class="form-control col-md-3" name="to"/>
+                  <hr>
+
+                  <select class="col-md-3 form-control select2bs4" style="width: 100%;" name="buyer">
+                    <option selected="selected">Select Buyer</option>
+                    {% for b in buyer %}
+                    <option>{{b.BuyerName}}</option>
+                    {% endfor %}
+
+                  </select>
+                  <hr>
+<input type="submit" class="form-control col-md-3 btn btn-outline-success" value="Filter by Buyer">
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                  <tr>
+                    <th>Date</th>
+                  <th>Line</th>
+                  <th>Style No</th>
+                  <th>Buyer</th>
+                  <th>Item</th>
+
+                  <th>OrderQty</th>
+                  <th>InPut</th>
+                  <th>Daily Output</th>
+                  <th>Balance Qty</th>
+                  <th>CMP</th>
+                  <th>CMPbyStyle</th>
+                    <th>CMPbyLine</th>
+                   <th>Operator/Helper</th>
+                    <th>CMPprHr</th>
+                    <th>CMP-hr/prs</th>
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in data %}
+                <tr>
+                  <td><a href="{% url 'myapp:DataEntryEdit' d.id %}">{{d.Date}}</a></td>
+                  <td>{{d.Line}}</td>
+                  <td>{{d.Style}}</td>
+                  <td> {{d.Buyer}}</td>
+                  <td>{{d.Item}}</td>
+
+                  <td>{{d.OrderQty}}</td>
+                  <td>{{d.In_Put}}</td>
+                  <td>{{d.DailyOutput}}</td>
+                  <td>{{d.BalanceQty}}</td>
+                  <td>{{d.CMP}}</td>
+                  <td>{{d.DailyCMPbyStyle}}</td>
+                  <td>{{d.DailyCMPbyLine}}</td>
+                  <td>{{d.Operator}}/{{d.Helper}}</td>
+                  <td>{{d.CMPprHr}}</td>
+                  <td>{{d.CMP_Hour_Person}}</td>
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Grand Totol</th>
+                  <th>{{filter_sum_orderqty}}</th>
+                  <th>{{filter_sum_input}}</th>
+                  <th>{{filter_sum_dailyoutput}}</th>
+                  <th>{{filter_balanceqty}}</th>
+                  <th>{{filter_cmp}}</th>
+                  <th>{{filter_cmpbystyle}}</th>
+                  <th>{{filter_cmpbyline}}</th>
+                    <th>{{filter_operator}}/{{filter_helper}}</th>
+                  <th>{{filter_cmprhr}}</th>
+                    <th>{{filter_cmphrprs}}</th>
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+
+
+
+{% endblock content %}

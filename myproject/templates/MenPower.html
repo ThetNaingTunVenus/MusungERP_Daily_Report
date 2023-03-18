@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card border-success mb-3" style="max-width: 50rem;">
+  <div class="card-header bg-success">Create Input Qty</div>
+  <div class="card-body text-primary">
+<form method="POST">{% csrf_token %}
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" class="form-control" name="date">
+                </div>
+              </div>
+
+
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Line No</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="line">
+                    <option selected="selected"></option>
+                    {% for b in line %}
+                    <option>{{b.Name}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Number of Operator</label>
+                  <input type="number" class="form-control" name="operator" required>
+                </div>
+              </div>
+
+        <div class="col-md-12">
+                <div class="form-group">
+                  <label>Number of Helper</label>
+                  <input type="number" class="form-control" name="helper">
+                </div>
+              </div>
+
+    <div class="col-md-12">
+                <div class="form-group">
+                  <label>Working Hr</label>
+                  <input type="number" class="form-control" name="workhr" value="11">
+                </div>
+              </div>
+
+
+
+
+     <div class="col-md-12">
+<!--                <div class="form-group">-->
+<!--                  <label>Date</label>-->
+                  <input type="submit" name="Input Data" class="btn btn-success">
+<!--                </div>-->
+              </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+
+<!--=========================================-->
+
+ <div class="card">
+              <div class="card-header">
+
+<h5>Production Input Data</h5>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                    <th>Date</th>
+                  <th>Line No</th>
+                  <th>Operator</th>
+                  <th>Helper</th>
+                    <th>Work Hr</th>
+
+
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in today_menpower %}
+                <tr>
+                  <td>{{d.Date}}</td>
+                  <td>{{d.Line}}</td>
+                  <td> {{d.Operator}}</td>
+                  <td>{{d.Helper}}</td>
+                    <td>{{d.WorkingHr}}</td>
+
+
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+
+
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+
+
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+{% endblock content %}
