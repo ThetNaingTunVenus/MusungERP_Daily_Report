@@ -48,6 +48,7 @@ class CreateDailyReport(View):
         d = datetime.date.today()
         todaydata = DailyData.objects.filter(Date=d)
 
+
         return render(request, 'daily_report_create.html', {'buyer': buyer, 'line':line, 'style':style, 'item':item,'order':order,'todaydata':todaydata})
 
     def post(self,request):
@@ -57,16 +58,9 @@ class CreateDailyReport(View):
         line = request.POST.get('line')
         style = request.POST.get('style')
         item = request.POST.get('item')
-        # orderqty = request.POST.get('orderqty')
 
-        # in_put = request.POST.get('in_put')
         out_put = request.POST.get('out_put')
 
-
-        # operatorhr = request.POST.get('operatorhr')
-        # helper = request.POST.get('helper')
-        # workhr = request.POST.get('workhr')
-        # cmpprhr = request.POST.get('cmpprhr')
         rmark = request.POST.get('rmark')
 
 # get men power
@@ -74,9 +68,7 @@ class CreateDailyReport(View):
         getoperator = getmen[0].Operator
         gethelper = getmen[0].Helper
         gethr = getmen[0].WorkingHr
-        # print(getoperator)
-        # print(gethelper)
-        # print(gethr)
+
 
 # get order qty
         queryset = OrderQty.objects.filter(style=style)
@@ -107,10 +99,11 @@ class CreateDailyReport(View):
         dailycmpline = cmp_amount * int(out_put)
         cmpprhr=dailycmpline/int(gethr)
 
+
        # a=round(cmpprhr,2)
 
         sum_of_operator = int(getoperator)+int(gethelper)
-        cmp_hour_prs = int(sum_of_operator)/ int(cmpprhr)
+        cmp_hour_prs = int(sum_of_operator)/ cmpprhr
 
 
 

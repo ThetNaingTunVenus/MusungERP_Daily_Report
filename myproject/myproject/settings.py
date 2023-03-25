@@ -83,6 +83,28 @@ DATABASES = {
     }
 }
 
+# MS SQL SERVER
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'sql_server.pyodbc',
+#         'NAME': 'mydb',
+#         'USER': 'sa',
+#         'PASSWORD': 'admin@12345',
+#         'HOST': 'myserver.database.windows.net',
+#         'PORT': '',
+#
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 13 for SQL Server',
+#         },
+#     },
+# }
+
+# set this to False if you want to turn off pyodbc's connection pooling
+# DATABASE_CONNECTION_POOLING = False
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
