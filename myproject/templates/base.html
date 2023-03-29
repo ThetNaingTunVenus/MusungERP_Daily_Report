@@ -244,7 +244,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-
+          {% if error %}
+            <a href="{{current_path}}" class="btn btn-danger ml-auto">___{{error}}___</a>
+          {% endif %}
+            {% if success %}<a href="{{current_path}}" class="btn btn-info ml-auto">___{{success}}___</a>{% endif %}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -261,10 +264,10 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+
         <div class="row">
           <div class="col-12">
-<!--          {% for i in a %}<div>{{i.id}}</div>{% endfor %}-->
-            <!-- /.card -->
+
  {% block content %}{% endblock content %}
 <div class="row col-md-12">
   <div class="col-md-6">
