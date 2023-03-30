@@ -590,4 +590,9 @@ class MenPower(View):
         else:
             return render(request, 'MenPower.html',{'error':error_message})
 
-        # return redirect('myapp:MenPower')
+
+# production shift
+class ProductionShitView(View):
+    def get(self,request):
+        ProductionShit = Line.objects.all()
+        return render(request, 'ProductionShit.html',{'line':ProductionShit})

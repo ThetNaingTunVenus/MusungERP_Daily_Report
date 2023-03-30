@@ -135,9 +135,24 @@ class DailyData(models.Model):
         db_table = 'DailyData'
 
 
+class ProductionShit(models.Model):
+    date = models.DateField()
+    line = models.CharField(max_length=225)
+    style = models.CharField(max_length=225)
+    shift_1 = models.IntegerField(default=0)
+    shift_2 = models.IntegerField(default=0)
+    shift_3 = models.IntegerField(default=0)
+    shift_4 = models.IntegerField(default=0)
+    shift_5 = models.IntegerField(default=0)
+    shift_6 = models.IntegerField(default=0)
+    shift_7 = models.IntegerField(default=0)
+    shift_8 = models.IntegerField(default=0)
+    shift_9 = models.IntegerField(default=0)
+    shift_10 = models.IntegerField(default=0)
+    shift_11 = models.IntegerField(default=0)
 
-
-
+    class Meta:
+        db_table = 'ProductionShit'
 
 
 class test(models.Model):

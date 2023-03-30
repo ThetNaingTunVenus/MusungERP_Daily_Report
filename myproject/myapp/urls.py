@@ -18,5 +18,6 @@ urlpatterns = [
     path('ItemCreate', ItemCreate.as_view(), name='ItemCreate'),
     path('InputQtyCreate', InputQtyCreate.as_view(), name='InputQtyCreate'),
     path('MenPower', MenPower.as_view(), name='MenPower'),
+    path('ProductionShit', ProductionShit.as_view(), name='ProductionShit'),
 
 ]

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--=========================================-->
+
+ <div class="card">
+              <div class="card-header">
+
+<h5>Production Data</h5>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                    <th>Production Line</th>
+                  <th>Style Code</th>
+                  <th>Output</th>
+                  <th>Action</th>
+
+
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                  {% for d in line %}
+                <tr>
+                  <td>{{d.line}}</td>
+                  <td>{{d.style}}</td>
+                  <td> </td>
+                  <td></td>
+
+
+                </tr>
+                {% endfor %}
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+
+
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+
+
+                  </tr>
+
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+{% endblock content %}

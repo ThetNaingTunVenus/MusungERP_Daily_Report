@@ -31,4 +31,8 @@ class DailyMenPowerAdmin(admin.ModelAdmin):
     list_display = ('Date','Line','Operator','Helper')
 admin.site.register(DailyMenPower,DailyMenPowerAdmin)
 
+class ProductionShitAdmin(admin.ModelAdmin):
+    list_display = ('date','line','style')
+admin.site.register(ProductionShit,ProductionShitAdmin)
+
 admin.site.register([Line,Buyer,Item])
