@@ -3,6 +3,54 @@
 
 {% block content %}
 
+<div class="card border-success mb-3" style="max-width: 40rem;">
+  <div class="card-header bg-success">Create Production Line Shift</div>
+  <div class="card-body text-success">
+<form method="POST">{% csrf_token %}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Line No</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="line">
+                    <option selected="selected"></option>
+                    {% for b in line %}
+                    <option>{{b.Name}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Style No</label>
+                  <select class="form-control select2bs4" style="width: 100%;" name="style">
+                    <option selected="selected"></option>
+                    {% for s in style %}
+                    <option>{{s.StyleCode}}</option>
+                    {% endfor %}
+
+                  </select>
+                </div>
+              </div>
+
+     <div class="col-md-12">
+<!--                <div class="form-group">-->
+<!--                  <label>Date</label>-->
+                  <input type="submit" name="Input Data" class="btn btn-success">
+<!--                </div>-->
+              </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+
 <!--=========================================-->
 
  <div class="card">
@@ -19,19 +67,20 @@
                     <th>Production Line</th>
                   <th>Style Code</th>
                   <th>Output</th>
-                  <th>Action</th>
+                  <th>Work Hour</th>
+
 
 
                   </tr>
 
                   </thead>
                   <tbody>
-                  {% for d in line %}
+                  {% for d in ps %}
                 <tr>
-                  <td>{{d.line}}</td>
-                  <td>{{d.style}}</td>
-                  <td> </td>
-                  <td></td>
+                  <td><a href="{% url 'myapp:ProductionShfitEdit' d.id %}" class=""><b>{{d.line}}</b></a></td>
+                  <td><a href="{% url 'myapp:ProductionShfitEdit' d.id %}" class="">{{d.style}}</a></td>
+                  <td>{{d.total_output}}</td>
+                  <td>{{d.total_hour}}</td>
 
 
                 </tr>

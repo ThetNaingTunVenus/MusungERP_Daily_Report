@@ -24,5 +24,21 @@ class DataEntryEditForm(forms.ModelForm):
 
                    }
 
-
+class ProductionShfitEditForm(forms.ModelForm):
+    class Meta:
+        model = ProductionShit
+        fields = ['shift_1','shift_2','shift_3','shift_4','shift_5','shift_6','shift_7','shift_8','shift_9','shift_10','shift_11']
+        widgets ={
+            'shift_1':forms.NumberInput(attrs={'class':'form-control'}),
+            'shift_2': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_3': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_4': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_5': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_6': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_7': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_8': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_9': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_10': forms.NumberInput(attrs={'class': 'form-control'}),
+            'shift_11': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 

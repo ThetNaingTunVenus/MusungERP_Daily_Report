@@ -7,7 +7,7 @@ from django.views.generic import TemplateView,View, CreateView, FormView, Detail
 from .models import *
 from .forms import *
 
-from django.db.models import Sum
+from django.db.models import Sum,Count
 # Create your views here.
 def index(request):
     a = test.objects.all()
@@ -594,5 +594,86 @@ class MenPower(View):
 # production shift
 class ProductionShitView(View):
     def get(self,request):
-        ProductionShit = Line.objects.all()
-        return render(request, 'ProductionShit.html',{'line':ProductionShit})
+        today = datetime.date.today()
+        ps = ProductionShit.objects.filter(date=today)
+        line = Line.objects.all()
+        style = Style.objects.all()
+
+        return render(request, 'ProductionShit.html',{'ps':ps,'line':line,'style':style})
+
+    def post(self,request):
+        line = request.POST.get('line')
+        style = request.POST.get('style')
+        today = datetime.date.today()
+        error_message = None
+        if not line:
+            error_message = 'select line'
+        if not style:
+            error_message = 'select style'
+
+        if not error_message:
+            production_shift = ProductionShit(date=today,line=line,style=style)
+            production_shift.save()
+            success = 'Successful!...' + line
+
+            return render(request, 'ProductionShit.html', {'success': success})
+        else:
+            return render(request, 'ProductionShit.html', {'error': error_message})
+
+# ShiftEdit
+class ProductionShfitEdit(View):
+    def get(self,request,pk):
+        pi = ProductionShit.objects.get(id=pk)
+        fm = ProductionShfitEditForm(instance=pi)
+        return render(request, 'ProductionShfitEditForm.html', {'form': fm,'pi':pi})
+
+    def post(self, request, pk):
+        today = datetime.date.today()
+        pi = ProductionShit.objects.get(id=pk)
+        fm = ProductionShfitEditForm(request.POST, instance=pi)
+        if fm.is_valid():
+            fm.save()
+
+
+        shift_data = ProductionShit.objects.filter(date=today, id=pk)
+
+        shift_1_data = shift_data[0].shift_1
+        shift_2_data = shift_data[0].shift_2
+        shift_3_data = shift_data[0].shift_3
+        shift_4_data = shift_data[0].shift_4
+        shift_5_data = shift_data[0].shift_5
+        shift_6_data = shift_data[0].shift_6
+        shift_7_data = shift_data[0].shift_7
+        shift_8_data = shift_data[0].shift_8
+        shift_9_data = shift_data[0].shift_9
+        shift_10_data = shift_data[0].shift_10
+        shift_11_data = shift_data[0].shift_11
+
+        total_out = shift_1_data + shift_2_data + shift_3_data + shift_4_data + shift_5_data + shift_6_data + shift_7_data + shift_8_data + shift_9_data + shift_10_data + shift_11_data
+
+        hr = 0
+        if shift_1_data != 0:
+            hr+=1
+        if shift_2_data !=0:
+            hr+=1
+        if shift_3_data !=0:
+            hr+=1
+        if shift_4_data !=0:
+            hr+=1
+        if shift_5_data !=0:
+            hr+=1
+        if shift_6_data !=0:
+            hr+=1
+        if shift_7_data !=0:
+            hr+=1
+        if shift_8_data !=0:
+            hr+=1
+        if shift_9_data !=0:
+            hr-=1
+        if shift_10_data !=0:
+            hr+=1
+        if shift_11_data !=0:
+            hr+=1
+
+        shift_data.update(total_output=total_out, total_hour=hr)
+        return redirect('myapp:ProductionShit')

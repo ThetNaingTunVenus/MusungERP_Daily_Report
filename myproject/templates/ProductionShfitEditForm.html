@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card border-success mb-3" style="max-width: 40rem;">
+  <div class="card-header bg-info"><b>{{pi.line}}</b></div>
+  <div class="card-body text-info">
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+{{form.as_p}}
+
+     <div class="col-md-12">
+        <input type="submit" name="Input Data" class="btn btn-info">
+     </div>
+
+
+
+
+</form>
+
+
+
+  </div>
+</div>
+
+<!--=========================================-->
+
+{% endblock content %}

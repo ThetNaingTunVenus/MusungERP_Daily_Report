@@ -150,9 +150,15 @@ class ProductionShit(models.Model):
     shift_9 = models.IntegerField(default=0)
     shift_10 = models.IntegerField(default=0)
     shift_11 = models.IntegerField(default=0)
+    total_output = models.IntegerField(default=0)
+    total_hour = models.IntegerField(default=0)
+
 
     class Meta:
         db_table = 'ProductionShit'
+
+    def __str__(self):
+        return self.line
 
 
 class test(models.Model):
