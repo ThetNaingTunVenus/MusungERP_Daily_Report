@@ -1,5 +1,5 @@
 import datetime
-
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render,redirect,HttpResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -677,3 +677,36 @@ class ProductionShfitEdit(View):
 
         shift_data.update(total_output=total_out, total_hour=hr)
         return redirect('myapp:ProductionShit')
+
+# User Log
+
+class UserRequiredMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            pass
+        else:
+            return redirect('myapp:UserLoginView')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserLoginView(FormView):
+    template_name = 'login.html'
+    form_class = ULoginForm
+    success_url = reverse_lazy('myapp:Deshboard')
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data['password']
+        usr = authenticate(username=username, password=password)
+
+        if usr is not None:
+            login(self.request, usr)
+
+        else:
+            return render(self.request, self.template_name, {'form': self.form_class, 'error': 'Invalid user login!'})
+        return super().form_valid(form)
+
+class UserLogoutView(View):
+    def get(self,request):
+        logout(request)
+        return redirect('myapp:UserLoginView')

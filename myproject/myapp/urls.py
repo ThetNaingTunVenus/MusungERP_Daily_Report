@@ -20,5 +20,7 @@ urlpatterns = [
     path('MenPower', MenPower.as_view(), name='MenPower'),
     path('ProductionShit', ProductionShitView.as_view(), name='ProductionShit'),
     path('ProductionShfitEdit/<int:pk>/', ProductionShfitEdit.as_view(), name='ProductionShfitEdit'),
+    path('login/',UserLoginView.as_view(), name='UserLoginView'),
+    path('logout/', UserLogoutView.as_view(), name='UserLogoutView'),
 
 ]
